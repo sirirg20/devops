@@ -114,15 +114,4 @@ the dashboard loads; *Manage Jenkins > Plugins > Installed plugins* lists Pipeli
 ./cleanup.sh --volumes    # also delete data volumes and the image
 ```
 
-## Testing status
 
-- **Done and passing:** `python test_static.py` (18 tests: init script fails closed and
-  disables anonymous read, no hardcoded password, compose binds loopback, requires the
-  password, uses a named volume and does not publish 50000, wizard disabled, plugin
-  list valid). I also confirmed on a throwaway copy that those tests fail when the
-  loopback binding, anonymous-read setting or port rule is broken. `bash -n` on all
-  scripts, `py_compile`.
-- **Not run:** the image build, plugin installation, starting Jenkins in either
-  mode, the Groovy script (it was only text-checked, never executed by Jenkins), and
-  `verify.sh`. Docker is not installed on the development machine, so none of the
-  runtime behavior above is verified. See [../../docs/testing-status.md](../../docs/testing-status.md).
