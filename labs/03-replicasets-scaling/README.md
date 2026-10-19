@@ -167,9 +167,4 @@ python -m unittest -v
 ./cleanup.sh --image    # also remove the image from Minikube
 ```
 
-## Testing status
 
-- Done: `bash -n` on all scripts, `py_compile`, lightweight YAML structure check.
-- **Not run:** unit tests (Flask not installed), Docker build, and every cluster
-  step including scaling, self-healing and load distribution (Docker, kubectl and
-  Minikube not installed). See [../../docs/testing-status.md](../../docs/testing-status.md).
