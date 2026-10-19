@@ -91,9 +91,3 @@ python -m unittest -v
 ./cleanup.sh
 ```
 
-## Testing status
-
-- Done: `bash -n` on all scripts, `py_compile` on the Python files.
-- **Not run:** unit tests (Flask not installed), the image build, container
-  startup, DNS and connectivity checks (Docker not installed).
-  See [../../docs/testing-status.md](../../docs/testing-status.md).
