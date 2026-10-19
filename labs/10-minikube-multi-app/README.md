@@ -139,24 +139,7 @@ node while it was drained, and both apps still answered.
   scale up or wait for pods to become Ready.
 - *`minikube service` returns immediately*: with the Docker driver on Windows/macOS the command must keep running.
 
-## Testing status
-
-- **Done and passing** (all static; nothing was run against a cluster):
-  - `test_manifests.py`: 28 tests across the manifests and scripts. They check that every Service selects pods in its own
-    namespace and targets a real container port; that replica counts, probe ports and paths,
-    resource requests/limits, non-root settings, image names and tags, the spread constraints and
-    PodDisruptionBudgets are consistent; that the cart points at an existing Redis Service; that deploy never
-    uses `--force`; and that every `kubectl` call carries the pinned context. Ten deliberate breakages in throwaway copies (a Service
-    in another namespace, a selector that matches nothing, a wrong target port, a blocking spread rule, a
-    PDB that blocks every drain, a missing Redis Service, `--force`, an unpinned `kubectl`, a wrong
-    probe port, a probe path the app does not serve) were each caught by the intended test.
-  - `test_miniyaml.py`: 10 tests of the YAML-subset reader, which also parses every file in `k8s/`.
-  - `apps/shopping-cart/test_cart_store.py`: 14 tests of the memory and Redis stores, including a
-    demonstration that two memory-backed replicas disagree while two Redis-backed replicas agree
-    (Redis is a fake in these tests).
-  - `bash -n` on all scripts, `py_compile`.
-- **Not run:** the Flask tests (`test_app.py` in both apps; Flask is not installed), the real
-  `redis` client, the image builds, the Minikube cluster, every `kubectl` call, scaling, the drain drill
+ectl` call, scaling, the drain drill
   and `verify.sh`. The manifests were checked by my own reader, not by the Kubernetes API server, so a field
   the API rejects would not be caught until `kubectl apply`. Docker, kubectl and Minikube are not installed
   on the development machine, and hardware virtualization was reported as disabled. See
