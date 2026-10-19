@@ -122,18 +122,3 @@ Nothing in this lab pushes or configures a remote. If you want the job to use Gi
 - *Build is SUCCESS but no greeting*: check the Execute shell step and that the
   parameter is named `GREETEE`.
 
-## Testing status
-
-- **Done and passing:**
-  - `test_hello_world.sh`: 6 of 6 checks.
-  - `test_static.py`: 14 of 14 tests. They run `render_job.sh` and parse the output with an XML
-    parser (defaults, custom URL/branch, characters like `&` and `|`, the optional poll trigger,
-    parameter and build step), run `make_sample_repo.sh` in a temp directory against a real git
-    repo (2 commits, no remote), and check that no script pushes and that the init script fails
-    closed. Two escaping bugs deliberately introduced in a throwaway copy were caught.
-  - `bash -n` on all scripts, `py_compile`.
-- **Not run:** the image build, starting Jenkins, `create_job.sh` and `verify.sh` against a real
-  Jenkins (CSRF crumb handling, the REST calls, the Git plugin reading the XML, an actual build).
-  The generated job XML is well-formed but has never been loaded by Jenkins, so Jenkins may
-  still reject a field. Docker is not installed on the development machine.
-  See [../../docs/testing-status.md](../../docs/testing-status.md).
