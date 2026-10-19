@@ -131,24 +131,4 @@ python test_pipeline.py -v
 - *Port 5001 in use inside the container*: only one pipeline run at a time is allowed (`disableConcurrentBuilds`).
 - *`ln`/symlink problems on a filesystem without symlinks*: `deploy.sh` falls back to a directory replacement.
 
-## Testing status
 
-- **Done and passing:**
-  - `python test_pipeline.py`: 36 tests. They run the `ci/` scripts for real (package contents; deploy,
-    numeric-order pruning and idempotence; invalid inputs; app start/status/stop lifecycle and
-    refusal of a second start; smoke test against a stand-in HTTP server that is healthy, returns
-    the wrong version, reports a bad health status, lacks an endpoint, or is not running).
-    They render the job XML (defaults, special characters, poll trigger) and check the Jenkinsfile
-    (stage order, conditional deploy, always-stop block, report and artifact steps), file safety and
-    a stand-in for flake8 (syntax, line length, whitespace).
-  - Mutation checks on throwaway copies (pruning disabled, app not stopped, smoke test that never
-    fails, tests shipped in the package) were each caught.
-  - `bash -n` on all scripts, `py_compile`.
-  - Running the tests uncovered two real problems that are fixed: GNU `tar` mis-reads `C:/...`
-    paths as remote hosts, and `ln -s` makes copies on Git Bash.
-- **Not run:** Flask is not installed, so `app/test_app.py`, `pytest`, `flake8`, gunicorn and
-  the runtime venv creation never ran; the Jenkins image build; Jenkins itself; the pipeline
-  (none of the seven stages has been executed by Jenkins); JUnit publishing and artifact
-  archiving; `create_job.sh` and `verify.sh`. The generated job XML is well-formed but has never
-  been loaded by Jenkins. Docker is not installed on the development machine.
-  See [../../docs/testing-status.md](../../docs/testing-status.md).
