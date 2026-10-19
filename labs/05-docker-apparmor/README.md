@@ -121,13 +121,3 @@ python -m unittest -v test_app        # needs Flask (pip install -r requirements
 ./cleanup.sh     # removes lab containers/image and unloads the profile
 ```
 
-## Testing status
-
-- **Done:** `python test_profile_static.py` (6 tests passed), `py_compile` on all
-  Python files, `bash -n` on both scripts.
-- **Not run:** everything that needs AppArmor or Docker: profile syntax check and
-  loading (`apparmor_parser`), image build, `apply_profile.py`,
-  `check_restrictions.py`, and the Flask unit tests (Flask not installed). The
-  profile has therefore **never been loaded into a kernel**; rule interactions
-  (for example with the base abstractions) are unverified until run on a Linux host.
-  See [../../docs/testing-status.md](../../docs/testing-status.md).
