@@ -149,17 +149,3 @@ python test_configs.py -v
   inside the Jenkins container (the script does this once).
 - *Dashboard missing*: check Grafana logs for provisioning errors.
 
-## Testing status
-
-- **Done and passing:** exporter simulator unit tests (5 tests), configuration
-  consistency tests (14 tests: dashboard JSON parses, queries and alert
-  expressions only reference metrics the exporter really exposes, scrape target
-  uses the service name, password not hardcoded, Jenkins stages and order),
-  `bash -n` on all scripts, `py_compile`.
-- **Not run:** `prometheus_client` import (package not installed, so
-  `delivery_metrics.py` itself has not been executed); `promtool check config`;
-  image builds; `docker compose up`; the smoke test; Grafana provisioning
-  loading the dashboard; the Jenkins image build and every pipeline stage.
-  Docker is not installed on the development machine. The YAML files were not
-  parsed by a YAML parser (no PyYAML), only checked for tabs and key strings.
-  See [../../docs/testing-status.md](../../docs/testing-status.md).
