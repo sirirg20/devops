@@ -115,9 +115,5 @@ python test_profile_static.py -v      # profile text sanity, stdlib only
 python -m unittest -v test_app        # needs Flask (pip install -r requirements.txt)
 ```
 
-## Cleanup
 
-```bash
-./cleanup.sh     # removes lab containers/image and unloads the profile
-```
 
