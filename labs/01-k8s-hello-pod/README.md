@@ -59,11 +59,6 @@ Set `MINIKUBE_DRIVER` to use another driver (for example `hyperv`).
 - On Windows with the Docker driver, `minikube service` may need to stay
   running in its terminal to keep the tunnel open.
 
-## Cleanup
 
-```bash
-./cleanup.sh          # remove resources
-./cleanup.sh --stop   # also stop Minikube
-```
 
 
