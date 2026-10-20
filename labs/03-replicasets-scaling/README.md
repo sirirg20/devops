@@ -164,7 +164,6 @@ python -m unittest -v
 
 ```bash
 ./cleanup.sh            # remove Service and ReplicaSet
-./cleanup.sh --image    # also remove the image from Minikube
-```
+
 
 
