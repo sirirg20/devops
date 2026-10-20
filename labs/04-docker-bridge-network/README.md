@@ -77,13 +77,7 @@ same thing (name resolution and reachability) without adding packages.
 6. `docker port db` and `docker port cache` print nothing: unpublished.
 7. A container on the default bridge cannot resolve `db`.
 
-Unit tests:
 
-```bash
-python -m venv .venv && source .venv/bin/activate   # Git Bash: .venv/Scripts/activate
-pip install -r requirements.txt
-python -m unittest -v
-```
 
 ## Cleanup
 
